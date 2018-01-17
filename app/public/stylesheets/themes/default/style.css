@@ -94,7 +94,7 @@
 .default-theme .flex-item .duration-block {
   float: right;
   font-size: 10pt;
-  width: 45%;
+  width: 60%;
   text-align: right;
 }
 
@@ -188,11 +188,11 @@ div.job_div {
 }
 
 div.job_div.green {
-  background-color: #006000;
+  background-color: #009900;
 }
 
 div.job_div.yellow {
-  background-color: #ffa500;
+  background-color: #e69500;
 }
 
 div.job_div.red {
