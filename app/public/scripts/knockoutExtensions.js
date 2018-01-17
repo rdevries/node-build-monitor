@@ -16,7 +16,6 @@ define(['ko'], function (ko) {
             update: function(element, valueAccessor) {
                 var value = valueAccessor();
                 var unwrap = ko.unwrap(value);
-
                 if(unwrap) {
                     $(element).animate(unwrap, 1000);
                 }

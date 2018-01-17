@@ -64,6 +64,17 @@ define(['ko', 'moment', 'countdown'], function (ko, moment, countdown) {
         this.isMenuAvailable = ko.computed(function () {
             return this.url() || false;
         }, this);
+
+        this.styleClass =  ko.computed(function () {
+          if (this.status()) {
+            var styleclass = 'job_div ';
+            if(this.isRunning()){
+              styleclass += 'running '
+            }
+            styleclass += this.status().toLowerCase();
+            return styleclass;
+          }
+        }, this);
     };
 
     return BuildViewModel;

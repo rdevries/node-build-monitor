@@ -11,18 +11,18 @@
   border: 1px solid black;
 }
 
-.default-theme .middle { 
+.default-theme .middle {
   vertical-align: middle;
 }
 
 .default-theme .medium-height {
-    line-height: 40px;
-    height: 40px;
+  line-height: 40px;
+  height: 40px;
 }
 
 .default-theme .reset-height {
-    display: inline-block;
-    line-height: normal;
+  display: inline-block;
+  line-height: normal;
 }
 
 .default-theme .flex-container {
@@ -88,29 +88,32 @@
 }
 
 .default-theme .flex-item .number {
-  font-size: 25pt;
+  font-size: 23pt;
 }
 
 .default-theme .flex-item .duration-block {
   float: right;
   font-size: 10pt;
+  width: 45%;
+  text-align: right;
 }
 
 .default-theme .flex-item .duration-icon {
   font-size: 35px;
-  float: left;
+  float: right;
   margin-top: 3px;
+  margin-left: 10px;
 }
 
 .default-theme .flex-item .time {
-  margin-left: 10px;
+  display: block;
 }
 
 .default-theme .flex-item .status {
   float: left;
   font-family: 'open_sans_condensedbold';
   font-weight: bold;
-  font-size: 25pt;
+  font-size: 20pt;
 }
 
 .default-theme .flex-item .reason {
@@ -178,4 +181,100 @@
   .default-theme .prio-horizontal-three {
     display: none;
   }
+}
+
+div.job_div {
+  color: #ffffff;
+}
+
+div.job_div.green {
+  background-color: #006000;
+}
+
+div.job_div.yellow {
+  background-color: #ffa500;
+}
+
+div.job_div.red {
+  background-color: #b00000;
+}
+
+div.job_div.gray {
+  background-color: #757575;
+}
+
+div.job_div.running.green {
+  background-color: #003000;
+  animation-name: color-green;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+div.job_div.yellow.running {
+  background-color: #664200;
+  animation-name: color-yellow;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+div.job_div.red.running {
+  background-color: #300000;
+  animation-name: color-red;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+div.job_div.gray.running {
+  background-color: #202020;
+  animation-name: color-gray;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes color-green {
+  0% {
+    background-color: #003000;
+  }
+  50% {
+    background-color: #00b000;
+  }
+100 {
+  background-color: #00ff00;
+}
+}
+
+@keyframes color-yellow {
+  0% {
+    background-color: #664200;
+  }
+  50% {
+    background-color: #ffa500;
+  }
+100 {
+  background-color: #ffb833;
+}
+}
+
+@keyframes color-red {
+  0% {
+    background-color: #300000;
+  }
+  50% {
+    background-color: #b00000;
+  }
+100 {
+  background-color: #ff0000;
+}
+}
+
+@keyframes color-gray {
+  0% {
+    background-color: #202020;
+  }
+  50% {
+    background-color: #757575;
+  }
+100 {
+  background-color: #cccccc;
+}
 }

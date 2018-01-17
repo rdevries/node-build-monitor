@@ -71,10 +71,35 @@ module.exports = function () {
                     callback(error);
                     return;
                 }
-
                 data.jobId = build.jobId;
+                data.intitialResult = data.result;
+                data.initialBuilding = data.building;
 
-                callback(error, simplifyBuild(data));
+                if(data.building){
+                  getPreviousBuildInfo(data,build,callback);
+                } else {
+                    callback(error, simplifyBuild(data));
+                }
+            });
+        },
+        getPreviousBuildInfo = function(data, build, callback) {
+            var previousBuildNumber = build.number - 1;
+            makeRequest(requestWithDefaults, self.configuration.url + '/job/' + build.jobId + '/' + previousBuildNumber + '/api/json', function (error, previousData) {
+              if (error) {
+                callback(error);
+                return;
+              } else {
+                data.building = previousData.building;
+                data.result = previousData.result;
+
+                build.number = previousData.number;
+
+                if(data.building) {
+                  getPreviousBuildInfo(data, build, callback);
+                } else {
+                    callback(error, simplifyBuild(data));
+                  }
+              }
             });
         },
         requestJobsForView = function (viewId, callback) {
@@ -116,21 +141,24 @@ module.exports = function () {
         parseDate = function (dateAsString) {
             return new Date(dateAsString);
         },
+        getProjectName = function(build) {
+          return build.fullDisplayName.split("#")[0];
+        },
         getStatus = function (build) {
             if (build.building) return "Blue";
             var result = build.result;
             if (result === 'FAILURE') return "Red";
             if (result === 'SUCCESS') return "Green";
-            if (result === 'UNSTABLE') return "#ffa500";
-            if (result === 'NOT_BUILT') return "Blue";
+            if (result === 'UNSTABLE') return "Yellow";
+            if (result === 'NOT_BUILT') return "Gray";
             if (result === 'ABORTED') return "Gray";
-            if (result === null) return "Blue";
+            if (result === null) return "Gray";
 
             return null;
         },
         getStatusText = function (build) {
             if (build.building) return "Running";
-            var result = build.result;
+            var result = build.intitialResult;
             if (result === 'FAILURE') return "Failure";
             if (result === 'SUCCESS') return "Success";
             if (result === 'UNSTABLE') return "Unstable";
@@ -160,9 +188,9 @@ module.exports = function () {
         simplifyBuild = function (res) {
             return {
                 id: res.jobId + '|' + res.id,
-                project: res.jobId,
-                number: res.number,
-                isRunning: res.building,
+                project: getProjectName(res),
+                number: res.displayName,
+                isRunning: res.initialBuilding,
                 startedAt: parseDate(res.timestamp),
                 finishedAt: parseDate(res.timestamp + res.duration),
                 requestedFor: getRequestedFor(res),

@@ -1,22 +1,22 @@
 {
   "monitor": {
-    "interval": 5000,
+    "interval": 30000,
     "numberOfBuilds": 12,
     "latestBuildOnly": false,
     "sortOrder": "date",
+    "expandEnvironmentVariables": false,
     "debug": true
   },
   "services": [
     {
-      "name": "Travis",
+      "name": "Jenkins",
       "configuration": {
-        "slug": "marcells/bloggy"
-      }
-    },
-    {
-      "name": "Travis",
-      "configuration": {
-        "slug": "marcells/node-build-monitor"
+        "url": "http://nvs0546:8080",
+        "view": "node-build-monitor",
+        "numberOfBuildsPerJob": 1,
+        "options": {
+          "strictSSL": false
+        }
       }
     }
   ]
