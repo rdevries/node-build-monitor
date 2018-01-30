@@ -88,7 +88,7 @@
 }
 
 .default-theme .flex-item .number {
-  font-size: 23pt;
+  font-size: 37pt;
 }
 
 .default-theme .flex-item .duration-block {
@@ -206,28 +206,28 @@ div.job_div.gray {
 div.job_div.running.green {
   background-color: #003000;
   animation-name: color-green;
-  animation-duration: 2s;
+  animation-duration: 5s;
   animation-iteration-count: infinite;
 }
 
 div.job_div.yellow.running {
   background-color: #664200;
   animation-name: color-yellow;
-  animation-duration: 2s;
+  animation-duration: 5s;
   animation-iteration-count: infinite;
 }
 
 div.job_div.red.running {
   background-color: #300000;
   animation-name: color-red;
-  animation-duration: 2s;
+  animation-duration: 5s;
   animation-iteration-count: infinite;
 }
 
 div.job_div.gray.running {
   background-color: #202020;
   animation-name: color-gray;
-  animation-duration: 2s;
+  animation-duration: 5s;
   animation-iteration-count: infinite;
 }
 
