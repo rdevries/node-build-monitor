@@ -1,4 +1,5 @@
-define(['ko', 'moment', 'countdown'], function (ko, moment, countdown) {
+define(['ko', 'moment', 'countdown' ,'math'], function (ko, moment, countdown, math) {
+
     var BuildViewModel = function (build) {
         this.isMenuVisible = ko.observable(false);
 
@@ -18,6 +19,9 @@ define(['ko', 'moment', 'countdown'], function (ko, moment, countdown) {
         this.hasWarnings = ko.observable();
         this.hasErrors = ko.observable();
         this.url = ko.observable();
+        this.estimatedDuration = ko.observable();
+        this.currentDuration = ko.observable();
+        this.jobTimestamp = ko.observable();
 
         this.update = function (build) {
             this.id(build.id);
@@ -36,6 +40,9 @@ define(['ko', 'moment', 'countdown'], function (ko, moment, countdown) {
             this.hasWarnings(build.hasWarnings);
             this.hasErrors(build.hasErrors);
             this.url(build.url);
+            this.estimatedDuration(build.estimatedDuration);
+            this.currentDuration(build.currentDuration);
+            this.jobTimestamp(build.jobTimestamp);
         };
 
         this.update(build);
@@ -65,9 +72,42 @@ define(['ko', 'moment', 'countdown'], function (ko, moment, countdown) {
             return this.url() || false;
         }, this);
 
+        this.progress = ko.computed(function () {
+          if (this.isRunning()) {
+
+            console.info("--------------------------------------------------");
+            var startedAt = parseInt(this.jobTimestamp());
+            console.info("startedAt=" + startedAt);
+
+            var estimatedDuration = parseInt(this.estimatedDuration());
+            console.info("estimatedDuration=" + estimatedDuration)
+
+            var estimatedEnding = startedAt + estimatedDuration;
+            console.info("estimatedEnding=" + estimatedEnding);
+
+            var now = parseInt(moment().valueOf());
+            console.info("now=" + now);
+
+            var estimatedTimeLeft = estimatedEnding - now;
+            console.info("estimatedTimeLeft=" + estimatedTimeLeft);
+
+            var progress = parseInt(math.multiply(100,math.divide(estimatedTimeLeft, estimatedDuration)));
+            console.info("progress=" +progress);
+
+            return progress > 100 ? '100%' : progress + "%";
+          }
+          return 0;
+        }, this);
+
+        this.outerStyle = ko.computed(function() {
+          if (this.status()) {
+            return this.status().toLowerCase();
+          }
+        }, this);
+
         this.styleClass =  ko.computed(function () {
           if (this.status()) {
-            var styleclass = 'job_div ';
+            var styleclass = '';
             if(this.isRunning()){
               styleclass += 'running '
             }
