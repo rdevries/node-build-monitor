@@ -1,7 +1,8 @@
 <div class="default-theme full-size">
   <div class="flex-container" data-bind="foreach: builds">
-    <div data-bind='hover: isMenuVisible' class="flex-item">
-      <div data-bind="css: styleClass" class="flex-item-inner nowrap">
+    <div data-bind='css: outerStyle, hover: isMenuVisible' class="flex-item">
+      <div class="progress" data-bind="css: styleClass, style: {width: progress}"></div>
+      <div class="flex-item-inner nowrap job_div">
         <span data-bind="text: project" class="number nowrap "></span>
         <div class="clear"></div>
         <div class="medium-height nowrap prio-vertical-two">

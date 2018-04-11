@@ -34,15 +34,14 @@
 
 .default-theme .flex-item {
   float: left;
-  width: 33%;
-  height: 25%;
+  width: 30%;
   color: transparent;
   position: relative;
+  margin:25px;
 }
 
 .default-theme .flex-item-inner {
   background: transparent;
-  margin: 25px;
   padding: 25px;
   box-shadow: 0px 0px 25px 8px rgba(0,0,0,0.8);
 }
@@ -187,94 +186,118 @@ div.job_div {
   color: #ffffff;
 }
 
-div.job_div.green {
-  background-color: #009900;
-}
-
-div.job_div.yellow {
-  background-color: #e69500;
-}
-
-div.job_div.red {
-  background-color: #b00000;
-}
-
-div.job_div.gray {
-  background-color: #757575;
-}
-
-div.job_div.running.green {
+div.green {
+  /*background-color: #009900;*/
   background-color: #003000;
+}
+
+div.yellow {
+  /*background-color: #e69500;*/
+  background-color: #664200;
+}
+
+div.red {
+  /*background-color: #b00000;*/
+  background-color: #300000;
+}
+
+div.gray {
+  /*background-color: #757575;*/
+  background-color: #202020;
+}
+
+div.running{
+  transform: rotateZ(360deg);
+  backface-visibility: hidden;
+  perspective: 1000;
+  will-change: transform;
+}
+
+div.running.green {
+  /*background-color: #003000;*/
+  background-color: #009900;
   animation-name: color-green;
   animation-duration: 5s;
   animation-iteration-count: infinite;
 }
 
-div.job_div.yellow.running {
-  background-color: #664200;
+div.yellow.running {
+  /*background-color: #664200;*/
+  background-color: #E69500;
   animation-name: color-yellow;
   animation-duration: 5s;
   animation-iteration-count: infinite;
 }
 
-div.job_div.red.running {
-  background-color: #300000;
+div.red.running {
+  /*background-color: #300000;*/
+  background-color: #B00000;
   animation-name: color-red;
   animation-duration: 5s;
   animation-iteration-count: infinite;
 }
 
-div.job_div.gray.running {
-  background-color: #202020;
+div.gray.running {
+  /*background-color: #202020;*/
+  background-color: #757575;
   animation-name: color-gray;
   animation-duration: 5s;
   animation-iteration-count: infinite;
 }
 
-@keyframes color-green {
-  0% {
-    background-color: #003000;
-  }
-  50% {
-    background-color: #00b000;
-  }
-100 {
-  background-color: #00ff00;
-}
-}
+/*@keyframes color-green {*/
+  /*0% {*/
+    /*background-color: #003000;*/
+  /*}*/
+  /*50% {*/
+    /*background-color: #00b000;*/
+  /*}*/
+/*100 {*/
+  /*background-color: #00ff00;*/
+/*}*/
+/*}*/
 
-@keyframes color-yellow {
-  0% {
-    background-color: #664200;
-  }
-  50% {
-    background-color: #ffa500;
-  }
-100 {
-  background-color: #ffb833;
-}
-}
+/*@keyframes color-yellow {*/
+  /*0% {*/
+    /*background-color: #664200;*/
+  /*}*/
+  /*50% {*/
+    /*background-color: #ffa500;*/
+  /*}*/
+/*100 {*/
+  /*background-color: #ffb833;*/
+/*}*/
+/*}*/
 
-@keyframes color-red {
-  0% {
-    background-color: #300000;
-  }
-  50% {
-    background-color: #b00000;
-  }
-100 {
-  background-color: #ff0000;
-}
-}
+/*@keyframes color-red {*/
+  /*0% {*/
+    /*background-color: #300000;*/
+  /*}*/
+  /*50% {*/
+    /*background-color: #b00000;*/
+  /*}*/
+/*100 {*/
+  /*background-color: #ff0000;*/
+/*}*/
+/*}*/
 
-@keyframes color-gray {
-  0% {
-    background-color: #202020;
-  }
-  50% {
-    background-color: #757575;
-  }
-100 {
-  background-color: #cccccc;
+/*@keyframes color-gray {*/
+  /*0% {*/
+    /*background-color: #202020;*/
+  /*}*/
+  /*50% {*/
+    /*background-color: #757575;*/
+  /*}*/
+/*100 {*/
+  /*background-color: #cccccc;*/
+/*}*/
+/*}*/
+.progress{
+  height:100%;
+  z-index:1;
+  position: absolute;
 }
+.flex-item-inner{
+  z-index:7;
+  position: relative;
 }

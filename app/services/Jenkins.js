@@ -199,6 +199,9 @@ module.exports = function () {
                 reason: "Build",
                 hasErrors: false,
                 hasWarnings: res.result == 'UNSTABLE',
+                estimatedDuration: res.estimatedDuration,
+                currentDuration: res.duration,
+                jobTimestamp: res.timestamp,
                 url: self.configuration.url + '/job/' + res.jobId + '/' + res.number
             };
         };

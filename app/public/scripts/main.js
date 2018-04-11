@@ -4,7 +4,8 @@ require.config({
         ko: 'libs/knockout-3.2.0',
         moment: 'libs/moment.min',
         countdown: 'libs/countdown.min',
-        cookies: 'libs/cookies.min'
+        cookies: 'libs/cookies.min',
+        math: 'libs/math.min'
     }
 });
 
