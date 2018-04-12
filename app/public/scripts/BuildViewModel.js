@@ -20,7 +20,6 @@ define(['ko', 'moment', 'countdown' ,'math'], function (ko, moment, countdown, m
         this.hasErrors = ko.observable();
         this.url = ko.observable();
         this.estimatedDuration = ko.observable();
-        this.currentDuration = ko.observable();
         this.jobTimestamp = ko.observable();
 
         this.update = function (build) {
@@ -41,7 +40,6 @@ define(['ko', 'moment', 'countdown' ,'math'], function (ko, moment, countdown, m
             this.hasErrors(build.hasErrors);
             this.url(build.url);
             this.estimatedDuration(build.estimatedDuration);
-            this.currentDuration(build.currentDuration);
             this.jobTimestamp(build.jobTimestamp);
         };
 
@@ -72,28 +70,15 @@ define(['ko', 'moment', 'countdown' ,'math'], function (ko, moment, countdown, m
             return this.url() || false;
         }, this);
 
-        this.progress = ko.computed(function () {
+        this.progress = ko.forcibleComputed(function () {
           if (this.isRunning()) {
 
-            console.info("--------------------------------------------------");
             var startedAt = parseInt(this.jobTimestamp());
-            console.info("startedAt=" + startedAt);
-
             var estimatedDuration = parseInt(this.estimatedDuration());
-            console.info("estimatedDuration=" + estimatedDuration)
-
             var estimatedEnding = startedAt + estimatedDuration;
-            console.info("estimatedEnding=" + estimatedEnding);
-
             var now = parseInt(moment().valueOf());
-            console.info("now=" + now);
-
             var estimatedTimeLeft = estimatedEnding - now;
-            console.info("estimatedTimeLeft=" + estimatedTimeLeft);
-
-            var progress = parseInt(math.multiply(100,math.divide(estimatedTimeLeft, estimatedDuration)));
-            console.info("progress=" +progress);
-
+            var progress = 100 - parseInt(math.multiply(100,math.divide(estimatedTimeLeft, estimatedDuration)));
             return progress > 100 ? '100%' : progress + "%";
           }
           return 0;
